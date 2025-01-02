@@ -1,11 +1,11 @@
 /*
-  0a. In terminal, initialize the project:
-  npm init -y
+    0a. In terminal, initialize the project:
+    npm init -y
 */
 
 /*
-  0b. In terminal, install the express module using the following command:
-  npm install express
+    0b. In terminal, install the express module using the following command:
+    npm install express
 */
 
 /*
