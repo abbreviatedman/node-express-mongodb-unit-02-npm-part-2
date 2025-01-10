@@ -3,14 +3,14 @@
 */
 
 async function orderingMcDonalds() {
-  // When you make an order, you get back a receipt. This is a promise that you will get your food when it's done
-  let receipt = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("finished cooking your McDouble!"), 5000);
-  });
+    // When you make an order, you get back a receipt. This is a promise that you will get your food when it's done
+    const receipt = new Promise((resolve, reject) => {
+        setTimeout(() => resolve({mcDouble: 1, mcChicken: 1, nuggets: 2, drinks: 2}), 3000);
+    });
 
-  let myOrder = await receipt; // wait until the promise resolves (*)
+    const myOrder = await receipt; // wait until the promise resolves (*)
 
-  console.log(myOrder); // "done!"
+    console.log(myOrder); // {mcDouble: 1, mcChicken: 1, nuggets: 2, drinks: 2}
 }
 
 // console.log("This is before ordering");
@@ -21,10 +21,9 @@ async function orderingMcDonalds() {
     8. Use `fetch()` and async-await to write an async function that makes an HTTP request
 */
 async function fetchData() {
-  let returnData = await fetch("https://whatthecommit.com/index.txt");
-  let commitMessage = await returnData.text();
-
-  console.log(commitMessage);
+    const returnData = await fetch("https://whatthecommit.com/index.txt");
+    const commitMessage = await returnData.text();
+    console.log(commitMessage);
 }
 
 console.log("before");

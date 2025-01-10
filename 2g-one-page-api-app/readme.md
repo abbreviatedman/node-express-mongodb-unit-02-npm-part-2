@@ -73,7 +73,7 @@ app.use(logger("dev"));
 const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}....`);
+    console.log(`Server is listening on port ${PORT}....`);
 });
 ```
 
@@ -123,8 +123,8 @@ When we arrive to the homepage by going to `localhost:3000/`, there should be no
 
 ```js
 router.get("/", function (req, res) {
-  // "home" refers to "./views/home.ejs"
-  res.render("home", { data: [], searchQuery: "" });
+    // "home" refers to "./views/home.ejs"
+    res.render("home", { data: [], searchQuery: "" });
 });
 ```
 
@@ -143,7 +143,7 @@ module.exports = router;
 
 Finally, we're going to set up an axios call to search the `themoviedb` API, and populate the homepage with the results. There are the key things that are already set up with **`./views/home.ejs`**, here's what you need to know:
 
-- The form is set up to perform a GET method to `localhost:3000/search-movie` and include a query that comes from the text input field. The request object will receive it on this file as `req.query.search`
+- The form is set up to perform a GET method to `localhost:3000/movies` and include a query that comes from the text input field. The request object will receive it on this file as `req.query.search`
 - We will be sending an axios call to `https://api.themoviedb.org/3/search/multi?api_key=a4cae43902da506229d8148bcfc7364c&language=en-US&query=${query}`
 - If the search provides no results, then we will set `searchQuery` to "No movies were found!" when we render the home page
 - Else, we will set `data` to the results of the query and set `searchQuery` to what we searched when we render the home page
@@ -153,24 +153,25 @@ Here is what that looks like:
 9. Set up a response to using the search form
 
 ```js
-router.get("/search-movie", async (req, res) => {
-  let query = req.query.search;
+router.get("/movies", async (req, res) => {
+    const query = req.query.search;
 
-  try {
-    let payload = await axios(
-      `https://api.themoviedb.org/3/search/multi?api_key=a4cae43902da506229d8148bcfc7364c&language=en-US&query=${query}`
-    );
+    try {
+        const payload = await axios(
+          `https://api.themoviedb.org/3/search/multi?api_key=a4cae43902da506229d8148bcfc7364c&language=en-US&query=${query}`
+        );
 
-    // console.log(payload.data.results[0]);
+        // console.log(payload.data.results[0]);
 
-    if (payload.data.results.length === 0) {
-      res.render("home", { data: [], searchQuery: "No movies were found!" });
-    } else {
-      res.render("home", { data: payload.data.results, searchQuery: query });
+        if (payload.data.results.length === 0) {
+            res.render("home", { data: [], searchQuery: "No movies were found!" });
+        } else {
+            const movies = payload.data.results.filter((movie) => movie.media_type === "movie");
+            res.render("home", { data: movies, searchQuery: query });
+        }
+    } catch (e) {
+        console.log(e);
     }
-  } catch (e) {
-    console.log(e);
-  }
 });
 ```
 

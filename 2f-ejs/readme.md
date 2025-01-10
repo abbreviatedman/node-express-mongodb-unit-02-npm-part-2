@@ -39,7 +39,7 @@ const express = require("express");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.send("homepage");
+    res.send("homepage");
 });
 
 module.exports = router;
@@ -56,28 +56,28 @@ Now that we have the response working, let's begin writing in our **./views/home
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Our first EJS!</title>
-    <meta name="description" content="" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Our first EJS!</title>
+        <meta name="description" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <img src="/noble.jpg" />
-    <h1>Noble Desktop</h1>
-    <ul>
-      <li><a href="/">Home</a></li>
-      <li><a href="/teachers">Teachers</a></li>
-      <li><a href="/students">Students</a></li>
-    </ul>
-    <h3>
-      Best tech education class in the world. Sign up now to further your
-      education!
-    </h3>
-  </body>
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+    </head>
+    <body>
+        <img src="/noble.jpg" />
+        <h1>Noble Desktop</h1>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/teachers">Teachers</a></li>
+            <li><a href="/students">Students</a></li>
+        </ul>
+        <h3>
+            Best tech education class in the world. Sign up now to further your
+            education!
+        </h3>
+    </body>
 </html>
 ```
 
@@ -87,10 +87,10 @@ Head back into **./routes/indexRouter.js** and render the "home" file:
 
 ```js
 router.get("/", (req, res) => {
-  // res.send("homepage");
+    // res.send("homepage");
 
-  // 2. Render the Home file
-  res.render("home");
+    // 2. Render the Home file
+    res.render("home");
 });
 ```
 
@@ -113,9 +113,9 @@ Partials are views that are designed to be used from within other views. They ar
 <img src="/noble.jpg" />
 <h1>Noble Desktop</h1>
 <ul>
-  <li><a href="/">Home</a></li>
-  <li><a href="/teachers">Teachers</a></li>
-  <li><a href="/students">Students</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/teachers">Teachers</a></li>
+    <li><a href="/students">Students</a></li>
 </ul>
 ```
 
@@ -154,12 +154,12 @@ We can take this further and move the `<head></head>` tag in another file as wel
 
 ```html
 <head>
-  <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Our first EJS!</title>
-  <meta name="description" content="" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="/stylesheets/style.css" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Our first EJS!</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 ```
 
@@ -171,7 +171,7 @@ We can take this further and move the `<head></head>` tag in another file as wel
 <%- include("./partials/head") %>
 ```
 
-## Javascript Injections
+## Data Injections
 
 EJS allows you to render the page with data that comes from the server, and inject it directly into the HTML. Head back into **./routes/indexRouter** and render the homepage with data:
 
@@ -179,13 +179,13 @@ EJS allows you to render the page with data that comes from the server, and inje
 
 ```js
 router.get("/", (req, res) => {
-  // res.send("homepage");
+    // res.send("homepage");
 
-  // 2. Render the Home file
-  // res.render("home");
+    // 2. Render the Home file
+    // res.render("home");
 
-  // 5. A) Render the Home file with data
-  res.render("home", { name: "Brian Carela" });
+    // 5. A) Render the Home file with data
+    res.render("home", { name: "Colin Jaffe" });
 });
 ```
 
@@ -194,10 +194,10 @@ Head back to **./views/home.ejs** and inject this value onto our home page:
 5. B) Inject the data onto the home page
 
 ```html
-<h2>Welcome <%=name%>!</h2>
+<h2>Welcome <%= name %>!</h2>
 
 <h3>
-  Best tech education class in the world. Sign up now to further your education!
+    Best tech education class in the world. Sign up now to further your education!
 </h3>
 ```
 
@@ -220,7 +220,7 @@ Let's take a look at a small example:
 
 ```html
 <% if (3 > 4) { %>
-<h2>Welcome <%=name%>!</h2>
+<h2>Welcome <%= name %>!</h2>
 <% } %>
 ```
 
@@ -231,7 +231,7 @@ Here's an example of how log in sessions might work. Edit your **indexRouter.js*
 6. B) Update your **indexRouter.js** file
 
 ```js
-res.render("home", { name: "Brian Carela", loggedIn: true });
+res.render("home", { name: "Colin Jaffe", loggedIn: true });
 ```
 
 Now head to the nav bar and include some conditional rendering:
@@ -240,7 +240,7 @@ Now head to the nav bar and include some conditional rendering:
 
 ```html
 <% if(loggedIn) { %>
-<h2>Welcome to the homepage <%=name%> !</h2>
+<h2>Welcome to the homepage <%= name %> !</h2>
 <% } else { %>
 <button>Log in</button>
 <% } %>
@@ -270,18 +270,18 @@ Now that we have a handle on using JavaScript directly on the HTML page, let's b
 
 ```js
 const teachersArr = [
-  {
-    name: "Brian McClain",
-    origin: "Unknown",
-    age: "Unknown",
-    leadingClass: false,
-  },
-  {
-    name: "Brian Carela",
-    origin: "Cloned in a facility on planet Kamino",
-    age: 30,
-    leadingClass: true,
-  },
+    {
+        name: "Jerron Smith",
+        origin: "Unknown",
+        age: "Unknown",
+        leadingClass: false,
+    },
+    {
+        name: "Colin Jaffe",
+        origin: "Cloned in a facility on planet Kamino",
+        age: 30,
+        leadingClass: true,
+    },
 ];
 ```
 
@@ -302,10 +302,10 @@ router.get("/teachers", (req, res) => {
 ```html
 <!DOCTYPE html>
 <html lang="en">
-  <%- include("./partials/head") %>
-  <body>
-    <%- include("./partials/navbar") %>
-  </body>
+    <%- include("./partials/head") %>
+    <body>
+      <%- include("./partials/navbar") %>
+    </body>
 </html>
 ```
 
@@ -322,9 +322,9 @@ Now that we've tested that the page works, let's begin rendering new elements an
 ```html
 <% teachers.forEach((teacher)=> { %>
 <div class="teachCard">
-  <h3><%=teacher.name%></h3>
-  <p>Origin: <%=teacher.origin%></p>
-  <p>Age: <%=teacher.age%></p>
+    <h3><%= teacher.name %></h3>
+    <p>Origin: <%= teacher.origin %> </p>
+    <p>Age: <%= teacher.age %></p>
 </div>
 <% }) %>
 ```
@@ -335,14 +335,14 @@ Now let's take advantage of conditional rendering to change up the style a bit
 
 ```html
 <% teachers.forEach((teacher)=> { %>
-  <% if(teacher.leadingClass) { %>
-  <div class="teachCard greenBackground">
-    <% } else { %>
-    <div class="teachCard redBackground">
-      <% } %>
-      <h3><%=teacher.name%></h3>
+    <% if(teacher.leadingClass) { %>
+    <div class="teachCard greenBackground">
+        <% } else { %>
+        <div class="teachCard redBackground">
+            <% } %>
+            <h3><%= teacher.name %></h3>
+        </div>
     </div>
-  </div>
 ```
 
 Make sure you don't have an extra closing tag on the div, there are 2 opening divs seen here because the class names are the only things within the `if/else` statement.

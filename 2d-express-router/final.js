@@ -22,10 +22,10 @@ const filmsRouter = require("./routes/filmsRouter-final");
 /*
     4. Set up the URL routes to connect to each router
 */
-// localhost:3000/api/v1/films
-app.use("/api/v1/films", filmsRouter);
 // localhost:3000/api/v1/emojis
 app.use("/api/v1/emojis", emojisRouter);
+// localhost:3000/api/v1/films
+app.use("/api/v1/films", filmsRouter);
 
 /*
     5. Set up the port and begin listening

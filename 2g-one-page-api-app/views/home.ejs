@@ -41,7 +41,7 @@
   <div class="container">
     <h1 class="text-center">Movie App</h1>
 
-    <form action="/search-movie" method="GET" class="justify-content-center d-flex">
+    <form action="/movies" method="GET" class="justify-content-center d-flex">
       <input type="text" name="search" class="form-control w-25" placeholder="Enter movie">
       <button class="ml-3 text-center btn btn-dark">Search Movie</button>
     </form>
@@ -65,8 +65,12 @@
             <div class="card mt-3 mb-5 w-75">
               <div class="row no-gutters">
                 <div class="col-md-4">
-                  <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2<%=movie.backdrop_path %>" class="card-img
+                  <% if (movie.poster_path) { %>
+                  <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2<%= movie.poster_path %>" class="card-img
                   img-fluid">
+                  <% } else { %>
+                  <p>No poster found.</p>
+                  <% } %>
                 </div>
 
                 <div class="col-md-8">

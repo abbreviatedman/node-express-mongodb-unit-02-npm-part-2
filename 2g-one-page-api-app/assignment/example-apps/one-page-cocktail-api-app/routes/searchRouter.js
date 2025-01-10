@@ -20,14 +20,16 @@ router.get("/search", async (req, res) => {
 
   try {
     let payload = await axios.get(
-      `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${query}`
+      `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`
     );
 
-    // console.log(payload.data.drinks)
+    console.log('data:');
+    console.log(payload.data);
 
-    if (!payload.data) {
+    if (!payload.data || typeof payload.data.drinks !== 'object' || payload.data.drinks === null) {
       res.render("home", { data: [] });
     } else {
+      console.log(payload.data.drinks);
       res.render("home", { data: payload.data.drinks });
     }
   } catch (error) {

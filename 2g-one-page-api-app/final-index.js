@@ -24,6 +24,7 @@ app.use(logger("dev"));
 /*
     4. Import Router files
 */
+// You will of course write the commented out version in YOUR final version!
 // const indexRouter = require("./routes/indexRouter");
 const indexRouter = require("./routes/FINAL-Router");
 

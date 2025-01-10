@@ -43,14 +43,14 @@ const prompt = require("prompt-sync")();
 /*
     5. Store the user input in a variable called `password`
 */
-let password = prompt("Store a password 4 characters long or longer: ");
+const password = prompt("Store a password 4 characters long or longer: ");
 
 /*
     6. Write a Try-Catch block to check the length of the password
 */
 try {
-  if (password.length < 4) throw "password too short!";
-  console.log("This password is acceptable");
+    if (password.length < 4) throw "password too short!";
+    console.log("This password is acceptable");
 } catch (error) {
-  console.log(error);
+    console.log(error);
 }

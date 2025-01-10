@@ -12,13 +12,13 @@
 
 ## Overview
 
-The goal of this lesson is to get used to using Asyncronous functions, and using them to make requests to an external API. When building out a Full-Stack web application, you will be setting up asyncronous requests to your own API (back-end) from the front-end of the application. You will also be performing asyncronous requests to external API's depending on the purpose of your application. This lesson is meant to give you a fundamental understanding on how to properly make these requests, and these skills are to be used in different contexts (in the same way that `if` statements and `for` loops are fundamental).
+The goal of this lesson is to get used to using asynchronous functions, and using them to make requests to an external API. When building out a Full-Stack web application, you will be setting up asynchronous requests to your own API (back-end) from the front-end of the application. You will also be performing asynchronous requests to external API's depending on the purpose of your application. This lesson is meant to give you a fundamental understanding on how to properly make these requests, and these skills are to be used in different contexts (in the same way that `if` statements and `for` loops are fundamental).
 
 The final-files and starter-files have been separated into their own folders. Each will contain at least 1 file per topic in this lesson.
 
 ## Try-Catch blocks
 
-A Try-Catch block is a block of code that makes an attempt to run a set of functions, and only execute it if it works. If it doesn't work, an alternate set of functions will execute instead. Here's what that might look like:
+A Try-Catch block is a block of code that makes an attempt to run code, and only executes it if it works. If it doesn't work, an alternate code block will execute instead. Here's what that might look like:
 
 ```js
 try {
@@ -77,16 +77,16 @@ With the `throw` statement, we can define what this error says:
 ```js
 let loadedDice;
 while (loadedDice !== 4) {
-  loadedDice = Math.ceil(Math.random() * 6);
-  // console.log(dice);
+    loadedDice = Math.ceil(Math.random() * 6);
+    // console.log(dice);
 
-  try {
-    if (loadedDice < 4) throw "dice rolled too low";
-    if (loadedDice > 4) throw "dice rolled too high";
-    console.log(loadedDice);
-  } catch (error) {
-    console.log(error);
-  }
+    try {
+        if (loadedDice < 4) throw "dice rolled too low";
+        if (loadedDice > 4) throw "dice rolled too high";
+        console.log(loadedDice);
+    } catch (error) {
+        console.log(error);
+    }
 }
 ```
 
@@ -126,7 +126,7 @@ const prompt = require("prompt-sync")();
 <!-- 5. Store the user input in a variable called `password` -->
 
 ```js
-let password = prompt("Store a password 4 characters long or longer: ");
+const password = prompt("Store a password 4 characters long or longer: ");
 ```
 
 In a fully developed application, you might have a feature that allows users to log in to their account. When this happens, you must use a Try-Catch block that will check to see if the password is correct. This example will not include password encryption, but it still demonstrates real-world application of a Try-Catch block:
@@ -137,10 +137,10 @@ In a fully developed application, you might have a feature that allows users to 
 
 ```js
 try {
-  if (password.length < 4) throw "password too short!";
-  console.log("This password is acceptable");
+    if (password.length < 4) throw "password too short!";
+    console.log("This password is acceptable");
 } catch (error) {
-  console.log(error);
+    console.log(error);
 }
 ```
 
@@ -182,14 +182,14 @@ To have an understanding as to what an asynchronous function is and what a promi
 
 ```js
 async function orderingMcDonalds() {
-  // When you make an order, you get back a receipt. This is a promise that you will get your food when it's done
-  let myOrder = new Promise((resolve, reject) => {
-    setTimeout(() => resolve("Your order is ready!!!"), 5000);
-  });
+    // When you make an order, you get back a receipt. This is a promise that you will get your food when it's done
+    let myOrder = new Promise((resolve, reject) => {
+        setTimeout(() => resolve({mcDouble: 1, mcChicken: 1, nuggets: 2, drinks: 2}), 3000);
+    });
 
-  let receipt = await myOrder; // wait until the promise resolves (*)
+    let receipt = await myOrder; // wait until the promise resolves (*)
 
-  console.log(receipt); // "done!"
+    console.log(receipt); // {mcDouble: 1, mcChicken: 1, nuggets: 2, drinks: 2}
 }
 
 console.log("This is before ordering");
@@ -213,10 +213,9 @@ Let's try this with `fetch()` which is a JavaScript built-in module that allows 
 
 ```js
 async function fetchData() {
-  let returnData = await fetch("https://whatthecommit.com/index.txt");
-  let commitMessage = await returnData.text();
-
-  console.log(commitMessage);
+    const returnData = await fetch("https://whatthecommit.com/index.txt");
+    const commitMessage = await returnData.text();
+    console.log(commitMessage);
 }
 
 console.log("before");
@@ -268,37 +267,37 @@ Next we're going to write a response to a GET request to the server. The URL wil
 
 ```js
 app.get("/:query", async (req, res) => {
-  // Store the dynamic parameter
-  let query = req.params.query;
+    // Store the dynamic parameter
+    let query = req.params.query;
 
-  // Try block in case an error breaks our code
-  try {
-    // We await the axios promise, it's resolved in the variable findMovies
-    let findMovies = await axios.get(
-      `https://api.themoviedb.org/3/search/multi?api_key=a4cae43902da506229d8148bcfc7364c&language=en-US&query=${query}`
-    );
+    // Try block in case an error breaks our code
+    try {
+        // We await the axios promise, it's resolved in the variable findMovies
+        const foundMovies = await axios.get(
+            `https://api.themoviedb.org/3/search/multi?api_key=a4cae43902da506229d8148bcfc7364c&language=en-US&query=${query}`
+        );
 
-    console.log("getting your movies");
+        console.log("getting your movies");
 
-    // If the search works, we send back the data
-    res.status(200).json({
-      message: "success",
-      payload: findMovies.data.results,
-    });
-    // If there's an error, we send that back instead
-  } catch (err) {
-    res.status(500).json({
-      message: "error",
-      payload: err,
-    });
-  }
+        // If the search works, we send back the data
+        res.status(200).json({
+            message: "success",
+            payload: foundMovies.data.results,
+        });
+        // If there's an error, we send that back instead
+    } catch (err) {
+        res.status(500).json({
+            message: "error",
+            payload: err,
+        });
+    }
 });
 ```
 
 - The callback function uses keyword `async` in front of it because we will be handling the promise that `axios` produces and need access to keyword `await`.
 - We're using the variable `query` to capture the dynamic parameters in the URL and store it temporarily.
 - A Try-Catch block is set up just in case there's an error with the request.
-- Variable `findMovies` will store the response to the `axios` request. Keyword `await` is used because `axios.get()` is a promise that will eventually return with data.
+- Variable `foundMovies` will store the response to the `axios` request. Keyword `await` is used because `axios.get()` is a promise that will eventually return with data.
 - The console log will run if the request is successful, because it's in the `try` statement.
 - `res` is the response object, and will respond with a parsed version of the axios response (for this API specifically, the response we want to see is within `.data.results`).
 - The `catch` statement will respond with an error if there is an error within the `try` statement.
