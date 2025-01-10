@@ -1,4 +1,4 @@
-# Lesson 2E: One-Pager Assignment
+# Lesson 2E: API Requests Assignment
 
 ---
 
@@ -8,18 +8,39 @@
 - Use a router to handle all URL requests
 - Use keywords `async` & `await` to perform a GET request to an API of your choosing
 - Use a `try-catch` statement to safely perform the GET request via `axios`
-- Render the data you get back onto an EJS file
+- Make a simple route that returns a sub-section of the API data
 
----
+ex. If the API URL is `https://api.chucknorris.io/jokes/random`, sending a request to `localhost:3000/` should return the `value` property from the object it's returning:
 
-![One-pager](https://i.imgur.com/GFJ3A1I.png)
+```js
+{
+    "categories": [],
+    "created_at": "2020-01-05 13:42:19.324003",
+    "icon_url": "https://assets.chucknorris.host/img/avatar/chuck-norris.png",
+    "id": "sf-y9rI_Ts6AmOEnv8i9lA",
+    "updated_at": "2020-01-05 13:42:19.324003",
+    "url": "https://api.chucknorris.io/jokes/sf-y9rI_Ts6AmOEnv8i9lA",
+    "value": "Chuck Norris can hit ctrl-alt-delete with one finger."
+}
+```
 
-It's time to create a One-page application! We're going to combine the skills we learned in this unit to create a simple application. We haven't arrived at the part of the course that covers MongoDB, so instead of using our own data we will use a free API available to the public. You can browse for one here: https://github.com/public-apis/public-apis
+Make sure that you look at the `data` property from the value that is returned from the Axios call. Example:
 
-The idea here is to make a GET request to the API, and attach the data to the front-end of the application in a way that is useful or entertaining. In the `example` folder, we've included an app where if you access `localhost:3000/summers`, it returns a list of the versions of Summer Smith from the TV show _Rick and Morty_(remember to use `npm install` to get the necessary modules before trying to run the server). Another example of a one-page application can be found here: https://shiny-pokemon-app.onrender.com/ . In the Shiny Pokemon app, you type in the name of a pokemon, and what is returned is an image of the shiny version of that pokemon (Here is a link to the API: https://pokeapi.co/ ) . Here are some other ideas:
+```js
+try {
+  const results = await axios.get("https://api.chucknorris.io/jokes/random");
 
-- An application that displays the status of the trains at a certain location (for example, here is the API endpoint for the metro in Lisbon, Portugal: https://app.metrolisboa.pt/status/getLinhas.php )
-- An application with a search bar, that returns data based on the search (see Shiny Pokemon app, 02.05.Simple-Movie-App, etc)
-- An application that displays a list of characters and useful/entertaining information related to these characters (Any video game/TV show/Movie that has a free API available)
+  res.json({
+    message: "success",
+    payload: results.data.value,
+  });
+} catch (error) {
+  console.log(error);
+}
+```
 
-The application doesn't need to be complex, impressive, or super stylish. As long as you get the data from point A (the API) to point B (the server) to point C (the client), and practiced all of the skills listed at the top, then you've completed this lab!
+## APIs To Choose From
+
+If you know of an API you're excited to use, use it! Otherwise, here's a list of APIs that you could use. **Do _not_ use one that has a value for "Auth" that's API Key or OAuth.**
+
+[Public APIs](https://github.com/public-apis/public-apis)
