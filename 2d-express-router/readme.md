@@ -93,7 +93,7 @@ Finally, let's set up the port and have the server listen on port 3000:
 const PORT = 3000;
 
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}....`);
+    console.log(`Server is listening on port ${PORT}....`);
 });
 ```
 
@@ -120,26 +120,26 @@ Next, let's set up our local data. Every time we run the server, the IDs will be
 
 ```js
 const films = [
-  {
-    id: uuid(),
-    name: "Guardians of the Galaxy",
-    boxOffice: 300,
-  },
-  {
-    id: uuid(),
-    name: "Dr. Strange & the Multiverse of Madness",
-    boxOffice: 75,
-  },
-  {
-    id: uuid(),
-    name: "Thor",
-    boxOffice: 55,
-  },
-  {
-    id: uuid(),
-    name: "When You Finish Saving The World",
-    boxOffice: 2,
-  },
+    {
+        id: uuid(),
+        name: "Guardians of the Galaxy",
+        boxOffice: 300,
+    },
+    {
+        id: uuid(),
+        name: "Dr. Strange & the Multiverse of Madness",
+        boxOffice: 75,
+    },
+    {
+        id: uuid(),
+        name: "Thor",
+        boxOffice: 55,
+    },
+    {
+        id: uuid(),
+        name: "When You Finish Saving The World",
+        boxOffice: 2,
+    },
 ];
 ```
 
@@ -168,17 +168,17 @@ module.exports = router;
 
 ```js
 router.post("/", function (req, res) {
-  // 9a. Build out a new film object
-  const newFilm = {
-    id: uuid(),
-    name: req.body.name,
-    boxOffice: req.body.boxOffice,
-  };
+    // 9a. Build out a new film object
+    const newFilm = {
+        id: uuid(),
+        name: req.body.name,
+        boxOffice: req.body.boxOffice,
+    };
 
-  // 9b. Push the new object into the local array
-  films.push(newFilm);
-  // 9c. Show the updated data to the user
-  res.json({ message: "success", payload: films });
+    // 9b. Push the new object into the local array
+    films.push(newFilm);
+    // 9c. Show the updated data to the user
+    res.json({ message: "success", payload: films });
 }); // end of POST /films
 ```
 
@@ -201,24 +201,24 @@ router.post("/", function (req, res) {
 
 ```js
 router.patch("/:id", function (req, res) {
-  // 10a. Find the film you want to change
-  const film = films.find((film) => film.id === req.params.id);
+    // 10a. Find the film you want to change
+    const film = films.find((film) => film.id === req.params.id);
 
-  // 10b. Send a failure message if the film isn't found
-  if (film === undefined) {
-    res.status(404).json({ message: "failure", payload: "film not found" });
-    // 10c. Target the found film, and change it based on the req.body
-  } else {
-    const incomingObj = req.body;
+    // 10b. Send a failure message if the film isn't found
+    if (film === undefined) {
+        res.status(404).json({ message: "failure", payload: "film not found" });
+        // 10c. Target the found film, and change it based on the req.body
+    } else {
+        const incomingObj = req.body;
 
-    //merging two objects
-    Object.assign(film, incomingObj);
+        //merging two objects
+        Object.assign(film, incomingObj);
 
-    res.json({
-      message: "success",
-      payload: film,
-    });
-  }
+        res.json({
+            message: "success",
+            payload: film,
+        });
+    }
 }); // end of PATCH request to /films/[id]
 ```
 
