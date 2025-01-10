@@ -242,24 +242,24 @@ router.patch("/:id", function (req, res) {
 
 ```js
 router.delete("/:id", function (req, res) {
-  // 11a. Find the film you want to delete
-  const i = films.findIndex((film) => film.id === req.params.id);
+    // 11a. Find the film you want to delete
+    const i = films.findIndex((film) => film.id === req.params.id);
 
-  // 11b. Send a failure message if the film isn't found
-  if (i === -1) {
-    res.status(404).json({
-      message: "failure",
-      payload: "film not found",
-    });
-    // 11c. Target the found film, and splice it out of our data
-  } else {
-    const deletedFilm = films.splice(i, 1)[0];
+    // 11b. Send a failure message if the film isn't found
+    if (i === -1) {
+        res.status(404).json({
+            message: "failure",
+            payload: "film not found",
+        });
+        // 11c. Target the found film, and splice it out of our data
+    } else {
+        const deletedFilm = films.splice(i, 1)[0];
 
-    res.json({
-      message: "success",
-      payload: deletedFilm,
-    });
-  }
+        res.json({
+            message: "success",
+            payload: deletedFilm,
+        });
+    }
 }); // end of DELETE request to localhost:3000/api/v1/films/[id]
 ```
 
@@ -275,15 +275,15 @@ We can apply a method of sorting our data using queries in the parameters of the
 
 ```js
 function sort(data, sortOrder, sortBy) {
-  const sortedData = data.toSorted((a, b) => {
-    return a[sortBy] < b[sortBy] ? -1 : 1;
-  });
-  
-  if (sortOrder === "desc") {
-    sortedData.reverse();
-  }
+    const sortedData = data.toSorted((a, b) => {
+        return a[sortBy] < b[sortBy] ? -1 : 1;
+    });
+    
+    if (sortOrder === "desc") {
+        sortedData.reverse();
+    }
 
-  return sortedData;
+    return sortedData;
 }
 ```
 
