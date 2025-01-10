@@ -3,7 +3,7 @@
 */
 
 /*
-    7. Create an array of your favorite films using uuidv4() for unique ID's
+    7. Create an array of your favorite films using uuid() for unique ID's
 */
 
 /*
@@ -11,19 +11,19 @@
 */
 
 /*
-    8a. Handle GET requests to /v1/query
+    8a. Handle GET requests to /films
 */
 
 /*
-    9. Handle POST requests to /v1/create-film
+    9. Handle POST requests to /films
 */
 
 /*
-    10. Handle PUT requests to /v1/update-by-id/:id
+    10. Handle PATCH requests to /films/[id]
 */
 
 /*
-    11. Handle DELETE requests to /v1/delete-film-by-id/:id
+    11. Handle DELETE requests to /films/[id]
 */
 
 /*

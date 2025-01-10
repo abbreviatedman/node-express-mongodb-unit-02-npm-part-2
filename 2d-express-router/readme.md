@@ -297,7 +297,7 @@ The `sort()` method will be plugged into our GET method, when we decide to make 
 This will make queries much simpler, once we go back into `router.get("/", ...)` and apply this. It makes it such that the front-end of an application simply needs to change the URL of the request based on some sort of form with check boxes and/or a drop down menu. This is what this looks like:
 
 ```js
-router.get("/v1/query", function (req, res) {
+router.get("/", function (req, res) {
     // 13a. Set up sortBy.
     // query?sortBy=name or query?sortBy=boxOffice
     // default to sorting by name if req.query.sortBy is undefined.
