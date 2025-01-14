@@ -304,6 +304,8 @@ app.get("/:query", async (req, res) => {
 
 Test this by first turning the server on with command `node axios.js`. Then open up Postman and make a GET request to `localhost:3000/thor`. You should see a response filled with movies whose titles contain "Thor" in it.
 
+Next, test the error condition by changing your code to make a bad request. Try changing "themoviedb.org" in your `axios` call to simply "moviedb.org". The server will not respond (since there is no server at that address), which simulates the API or database being down. You should get a `"message": "failure"` response with the caught error from the catch block.
+
 Don't forget to turn the server off with `ctrl + c`
 
 Thanks to the free and amazing Movie Database for the use of their API.
