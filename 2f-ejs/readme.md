@@ -2,7 +2,7 @@
 
 ---
 
-## What this topic covers
+### What this topic covers
 
 - What is EJS
 - Partials
@@ -10,13 +10,13 @@
 - Conditional Rendering
 - Looping over elements
 
-## EJS
+### EJS
 
 EJS (Embedded JavaScript) is one of the most popular template engines for Javascript. As the name suggests, it lets us embed JavaScript code in a template language that is then used to generate HTML.
 
 Until we get to creating React applications on the front-end and attaching it to the rest of our back-end, this is what we will use to serve front-end files to a user.
 
-## Getting Started
+### Getting Started
 
 Let's get started by installing the necessary modules for today's project. You are given some starter files with a _**package.json**_, so use the following command:
 
@@ -98,9 +98,7 @@ router.get("/", (req, res) => {
 - Use the browser to navigate to `localhost:3000/`. The browser should show the beginnings of a web page!
 - Shut the server off using `ctrl + c`
 
-Now that we have our home page rendering, let's start separating parts of our HTML to make it easier to work with!
-
-## Partials
+### Partials
 
 Partials are views that are designed to be used from within other views. They are useful for reusing the same views, layouts, and even other partials. For example, we can move the Nav bar out of our **./views/home.ejs** file, and create a new file in the partials folder to re-use it on multiple web pages.
 
@@ -171,7 +169,7 @@ We can take this further and move the `<head></head>` tag in another file as wel
 <%- include("./partials/head") %>
 ```
 
-## Data Injections
+### Data Injections
 
 EJS allows you to render the page with data that comes from the server, and inject it directly into the HTML. Head back into **./routes/indexRouter** and render the homepage with data:
 
@@ -207,7 +205,7 @@ Head back to **./views/home.ejs** and inject this value onto our home page:
 
 Now that we understand basic data injections, let's cover what happens when you try an `if(){}` statement with EJS:
 
-## Conditional Rendering
+### Conditional Rendering
 
 Conditional rendering is when you only render elements onto a page if the injected data meets a certain condition.
 
@@ -246,7 +244,7 @@ Now head to the nav bar and include some conditional rendering:
 <% } %>
 ```
 
-## Looping over elements
+### Looping over elements
 
 This is another form of conditional rendering. We just saw how using `if()` statements can affect our ability to render elements. Now let's take a look at how we can render elements using `for()` loops!
 
