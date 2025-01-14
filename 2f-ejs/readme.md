@@ -6,7 +6,7 @@
 
 - What is EJS
 - Partials
-- Javascript Injections
+- Data Injections
 - Conditional Rendering
 - Looping over elements
 
