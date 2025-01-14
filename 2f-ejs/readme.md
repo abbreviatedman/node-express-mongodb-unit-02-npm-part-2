@@ -238,7 +238,7 @@ Let's take a look at a small example:
 
 ```html
 <% if (3 > 4) { %>
-<h2>Welcome <%= name %>!</h2>
+    <h2>Welcome <%= name %>!</h2>
 <% } %>
 ```
 
@@ -258,9 +258,9 @@ Now head to the nav bar and include some conditional rendering:
 
 ```html
 <% if(loggedIn) { %>
-<h2>Welcome to the homepage <%= name %> !</h2>
+    <h2>Welcome to the homepage <%= name %> !</h2>
 <% } else { %>
-<button>Log in</button>
+    <button>Log in</button>
 <% } %>
 ```
 
@@ -307,11 +307,11 @@ const teachersArr = [
 
 ```js
 router.get("/teachers", (req, res) => {
-  res.render("teachers", {
-    teachers: teachersArr,
+    res.render("teachers", {
+        teachers: teachersArr,
         name: "Colin",
-    loggedIn: true,
-  });
+        loggedIn: true,
+    });
 });
 ```
 
@@ -339,11 +339,11 @@ Now that we've tested that the page works, let's begin rendering new elements an
 
 ```html
 <% teachers.forEach((teacher)=> { %>
-<div class="teachCard">
-    <h3><%= teacher.name %></h3>
-    <p>Origin: <%= teacher.origin %> </p>
-    <p>Age: <%= teacher.age %></p>
-</div>
+    <div class="teachCard">
+        <h3><%= teacher.name %></h3>
+        <p>Origin: <%= teacher.origin %> </p>
+        <p>Age: <%= teacher.age %></p>
+    </div>
 <% }) %>
 ```
 
@@ -354,13 +354,14 @@ Now let's take advantage of conditional rendering to change up the style a bit
 ```html
 <% teachers.forEach((teacher)=> { %>
     <% if(teacher.leadingClass) { %>
-    <div class="teachCard greenBackground">
-        <% } else { %>
+        <div class="teachCard greenBackground">
+    <% } else { %>
         <div class="teachCard redBackground">
-            <% } %>
-            <h3><%= teacher.name %></h3>
-        </div>
+    <% } %>
+
+    <h3><%= teacher.name %></h3>
     </div>
+<% } %>
 ```
 
 Make sure you don't have an extra closing tag on the div, there are 2 opening divs seen here because the class names are the only things within the `if/else` statement.
