@@ -296,8 +296,8 @@ const teachersArr = [
     },
     {
         name: "Colin Jaffe",
-        origin: "Cloned in a facility on planet Kamino",
-        age: 30,
+        origin: "Boston",
+        age: 44,
         leadingClass: true,
     },
 ];
@@ -309,7 +309,7 @@ const teachersArr = [
 router.get("/teachers", (req, res) => {
   res.render("teachers", {
     teachers: teachersArr,
-    name: "Brian Carela",
+        name: "Colin",
     loggedIn: true,
   });
 });
