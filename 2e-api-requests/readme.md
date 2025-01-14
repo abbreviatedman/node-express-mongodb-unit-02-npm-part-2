@@ -259,7 +259,7 @@ const PORT = 3000;
 app.listen(PORT, () => console.log(`server listening on ${PORT}`));
 ```
 
-Next we're going to write a response to a GET request to the server. The URL will look like `localhost:3000/:query` where `:query` are the search terms. Take a look at the code first and read the explanation afterwards:
+Next we're going to write a response to a GET request to the server. The URL will look like `localhost:3000/:query` where `:query` is the search term. Take a look at the code first and read the explanation afterwards:
 
 11. Write an asynchronous function to respond to requests at `localhost:3000/:query`
 
@@ -305,3 +305,7 @@ app.get("/:query", async (req, res) => {
 Test this by first turning the server on with command `node axios.js`. Then open up Postman and make a GET request to `localhost:3000/thor`. You should see a response filled with movies whose titles contain "Thor" in it.
 
 Don't forget to turn the server off with `ctrl + c`
+
+Thanks to the free and amazing Movie Database for the use of their API.
+
+![logo for The Movie Database](./assets/tmdb.svg)
