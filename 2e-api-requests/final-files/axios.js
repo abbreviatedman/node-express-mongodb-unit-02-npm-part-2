@@ -23,8 +23,8 @@ app.get("/:query", async (req, res) => {
 
         // If the search works, we send back the data
         res.status(200).json({
-          message: "success",
-          payload: foundMovies.data.results,
+            message: "success",
+            payload: foundMovies.data.results,
         });
         // If there's an error, we send that back instead
     } catch (err) {
