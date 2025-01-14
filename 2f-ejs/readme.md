@@ -98,7 +98,27 @@ router.get("/", (req, res) => {
 - Use the browser to navigate to `localhost:3000/`. The browser should show the beginnings of a web page!
 - Shut the server off using `ctrl + c`
 
+### What's Happening Here?
+
+Check out `index.js`, where we have the following lines:
+
+```js
+// Set the view engine to use is ejs, and serve from the views folder
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+// Allow the views to read CSS files from the public
+app.use(express.static(path.join(__dirname, "public")));
+```
+
+The above sets things up so that instead of just sending back HTML strings or HTML files, as we did with our earlier servers, we are now using EJS.
+
+We'll start to see the full power of EJS in the very next section, but let's get what's happening here: when we call `res.render("home")`, Express knows (thanks to the above configuration lines) to use the rendering engine (also known as a "view engine") EJS to process a file called "home" from the "views" folder and then send the HTML it gets back to the client.
+
+Right now, "home.ejs" is only outputting the HTML in it without any special processing required, but we're about to change that!
+
 ### Partials
+
+Now that we have our home page rendering, let's start separating parts of our HTML to make it easier to work with.
 
 Partials are views that are designed to be used from within other views. They are useful for reusing the same views, layouts, and even other partials. For example, we can move the Nav bar out of our **./views/home.ejs** file, and create a new file in the partials folder to re-use it on multiple web pages.
 
