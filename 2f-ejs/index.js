@@ -9,12 +9,12 @@ const path = require("path");
 /*
     The necessary middleware
 */
-// The view engine to use ejs, and serve from the views folder
+// Set the view engine to use is ejs, and serve from the views folder
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
 // Allow the views to read CSS files from the public
 app.use(express.static(path.join(__dirname, "public")));
-// Allow smooth useage of URLs, JSON, and see requests in the console
+// Allow smooth usage of URLs, JSON, and see requests in the console
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(logger("dev"));
