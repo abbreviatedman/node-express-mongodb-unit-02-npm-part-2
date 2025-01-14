@@ -109,7 +109,7 @@ Comment out this task before moving on to the next task.
 
 Now that we understand how Try-Catch blocks work, let's take a look at a more practical example.
 
-In the terminal, use command `npm install prompt-sync`. This is a module that allows you to prompt a user input via the terminal:
+In the terminal, use command `npm init -y` to make this project an NPM project with a `package.json` file. Then, run `npm install prompt-sync`. This is a module that allows you to prompt a user input via the terminal.
 
 4. Import the `prompt-sync` module
 
