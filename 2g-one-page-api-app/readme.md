@@ -161,8 +161,6 @@ router.get("/movies", async (req, res) => {
           `https://api.themoviedb.org/3/search/multi?api_key=a4cae43902da506229d8148bcfc7364c&language=en-US&query=${query}`
         );
 
-        // console.log(payload.data.results[0]);
-
         if (payload.data.results.length === 0) {
             res.render("home", { data: [], searchQuery: "No movies were found!" });
         } else {
